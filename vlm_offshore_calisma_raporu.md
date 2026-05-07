@@ -216,8 +216,8 @@ VLM_Denemesi/
 ├── configs/
 │   └── pipeline_config.yaml          # Merkezi YAML konfigürasyon dosyası
 ├── data/
-│   ├── videos/                        # Kaynak video dosyaları (kullanıcı ekleyecek)
-│   │   └── offshore_sample.mp4        # ← Video dosyası buraya yerleştirilmeli
+│   ├── videos/                        # Kaynak video dosyaları (repo ile birlikte gelir)
+│   │   └── *.mp4                      # Otomatik algılanır — dosya adı önemli değil
 │   ├── frames/                        # Videodan çıkarılan frame'ler
 │   ├── annotated_frames/              # CLIP tahminleri yazılmış frame'ler
 │   └── top_frames/                    # Her aşama için en iyi frame'ler
@@ -237,7 +237,7 @@ VLM_Denemesi/
 └── vlm_offshore_calisma_raporu.md     # Bu çalışma raporu
 ```
 
-Tüm scriptler `configs/pipeline_config.yaml` dosyasından merkezi olarak konfigüre edilebilir. Ayrıca her script CLI argümanları ile de parametrelenebilir.
+Tüm scriptler `configs/pipeline_config.yaml` dosyasından merkezi olarak konfigüre edilebilir. Ayrıca her script CLI argümanları ile de parametrelenebilir. Video dosyası otomatik algılanır — `data/videos/` dizinine herhangi bir isimle video koymak yeterlidir.
 
 ---
 
@@ -260,6 +260,8 @@ Aşağıdaki maddeler tamamlanmıştır:
 - [x] requirements.txt, README.md, .gitignore hazırlandı.
 - [x] Proje dizin yapısı (data, scripts, configs, results) oluşturuldu.
 - [x] GitHub'a yükleme için proje hazır hale getirildi.
+- [x] Video dosyası projeye eklendi ve GitHub'a yüklendi.
+- [x] Video dosya adından bağımsız otomatik algılama sistemi eklendi.
 
 ### 9.2. CLIP Pipeline Çalıştırıldığında Ne Olacak
 
@@ -306,10 +308,11 @@ git remote add origin https://github.com/KULLANICI_ADI/VLM_Denemesi.git
 git push -u origin main
 ```
 
-#### A.2. Video dosyasını hazırla
-- Vimeo videosu (https://vimeo.com/273681277) veya kendi offshore kurulum videosunu indir.
-- Dosya adını `offshore_sample.mp4` olarak kaydet.
-- Bu dosya GitHub'a yüklenmeyecek (.gitignore ile hariç tutuldu). Ubuntu'ya SCP ile gönderilecek.
+#### A.2. Video dosyası (TAMAMLANDI)
+- Video dosyası repo ile birlikte geliyor (GitHub'a yüklendi).
+- `data/videos/` dizinindeki herhangi bir video dosyası otomatik algılanır.
+- Dosya adı önemli değildir — desteklenen formatlar: .mp4, .avi, .mov, .mkv, .webm
+- Farklı bir video ile denemek için eski videoyu silip yenisini `data/videos/` dizinine koymak yeterlidir.
 
 #### A.3. Ubuntu'da kurulum
 ```bash
@@ -333,10 +336,11 @@ pip install --upgrade pip
 pip install -r requirements.txt
 ```
 
-#### A.4. Video dosyasını yerleştir
+#### A.4. Video dosyası kontrolü
 ```bash
-# macOS'tan Ubuntu'ya SCP ile gönder
-scp offshore_sample.mp4 kullanici@ubuntu-ip:~/VLM_Denemesi/data/videos/
+# Video dosyasının geldiğini doğrula
+ls -la data/videos/
+# Herhangi bir .mp4/.avi/.mov dosyası görünmeli
 ```
 
 #### A.5. CLIP pipeline'ı çalıştır
@@ -462,7 +466,9 @@ Offshore rüzgâr türbini kurulum sürecini kamera görüntüleriyle analiz ede
 - Teori ve mimari tasarım tamamlandı.
 - CLIP tabanlı aşama sınıflandırma pipeline'ı kodlandı ve proje klasörüne yerleştirildi.
 - 6 Python script + konfigürasyon + çalıştırma scriptleri hazır.
+- Video dosyası repo ile birlikte geliyor, ayrıca indirmeye gerek yok.
 - Pipeline henüz çalıştırılmadı veya çalıştırıldıysa sonuçlar bu bölümün altına eklenecek.
+- Script'ler video adından bağımsız çalışır (data/videos/ dizinindeki ilk videoyu otomatik bulur).
 
 ### Proje Yapısı
 ```
