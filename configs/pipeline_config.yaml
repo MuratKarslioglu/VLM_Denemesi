@@ -3,7 +3,7 @@
 
 # Video ve Frame ayarları
 video:
-  input_path: "data/videos/offshore_sample.mp4"
+  input_dir: "data/videos"            # Video dosyasının bulunduğu dizin (otomatik algılanır)
   frame_output_dir: "data/frames"
   frame_interval_seconds: 2        # Kaç saniyede bir frame alınacak
   output_format: "jpg"
