@@ -1,0 +1,52 @@
+# ============================================================
+# VLM Offshore — Git Ignore
+# ============================================================
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg-info/
+dist/
+build/
+*.egg
+
+# Virtual Environment
+venv/
+.venv/
+env/
+.env/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Jupyter
+.ipynb_checkpoints/
+
+# PyTorch model cache
+*.pt
+*.pth
+*.ckpt
+
+# Data — pipeline çıktıları (videolar HARİÇ, onlar repo'ya dahil)
+# data/videos/ → Git'e dahil (kaynak video)
+data/frames/*.jpg
+data/frames/*.png
+data/annotated_frames/*.jpg
+data/annotated_frames/*.png
+data/top_frames/**/*.jpg
+data/top_frames/**/*.png
+
+# Sonuçlar (pipeline çıktıları)
+results/*.csv
+results/*.txt
+results/*.mp4
+
+# Boş dizin koruma dosyaları hariç
+!**/.gitkeep

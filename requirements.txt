@@ -1,0 +1,39 @@
+# VLM Offshore Rüzgâr Türbini Kurulum Analizi - Gereksinimler
+# ============================================================
+
+# Temel Bilimsel Hesaplama
+numpy>=1.24.0
+pandas>=2.0.0
+
+# Görüntü İşleme
+opencv-python>=4.8.0
+Pillow>=10.0.0
+
+# Video İşleme
+imageio>=2.31.0
+imageio-ffmpeg>=0.4.8
+
+# PyTorch (CUDA desteği için ayrıca pytorch.org üzerinden kurulum yapılabilir)
+torch>=2.1.0
+torchvision>=0.16.0
+
+# CLIP - OpenAI
+git+https://github.com/openai/CLIP.git
+ftfy
+regex
+
+# Transformers (Qwen-VL, LLaVA vb. için)
+transformers>=4.36.0
+
+# Veri Görselleştirme
+matplotlib>=3.7.0
+seaborn>=0.12.0
+
+# İlerleme Çubuğu
+tqdm>=4.65.0
+
+# Konfigürasyon
+pyyaml>=6.0
+
+# Loglama
+coloredlogs>=15.0

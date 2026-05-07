@@ -1,0 +1,63 @@
+# VLM Offshore Pipeline Konfigürasyonu
+# =====================================
+
+# Video ve Frame ayarları
+video:
+  input_path: "data/videos/offshore_sample.mp4"
+  frame_output_dir: "data/frames"
+  frame_interval_seconds: 2        # Kaç saniyede bir frame alınacak
+  output_format: "jpg"
+  jpeg_quality: 95
+
+# CLIP Model ayarları
+clip:
+  model_name: "ViT-B/32"           # Alternatifler: ViT-B/16, ViT-L/14, ViT-L/14@336px
+  device: "auto"                    # auto, cuda, cpu
+  batch_size: 16
+
+# İşlem aşaması etiketleri (stage labels)
+stages:
+  - label: "lifting_preparation"
+    description: "Kaldırma hazırlığı - Vinç bağlantıları kontrol ediliyor, parça sabitleniyor"
+    prompt: "A crane preparing to lift a large wind turbine component, workers attaching rigging and slings"
+  
+  - label: "component_lifting"
+    description: "Parça kaldırılıyor - Türbin bileşeni vinç ile havaya kaldırılıyor"
+    prompt: "A large wind turbine component being lifted by a crane, suspended in the air"
+  
+  - label: "vertical_alignment"
+    description: "Dikey hizalama - Parça hedef konuma doğru hizalanıyor"
+    prompt: "A wind turbine component being aligned vertically at height, workers guiding the alignment"
+  
+  - label: "component_installation"
+    description: "Parça montajı - Bileşen hedef konumuna yerleştiriliyor ve sabitleniyor"
+    prompt: "A wind turbine component being installed and secured in its final position on the tower"
+  
+  - label: "final_inspection"
+    description: "Son kontrol - Montaj tamamlanmış, son kontroller yapılıyor"
+    prompt: "Workers performing final inspection after wind turbine component installation is complete"
+
+# Sonuç dosyaları
+results:
+  csv_output: "results/clip_stage_scores.csv"
+  summary_output: "results/clip_summary.txt"
+  top_frames_dir: "data/top_frames"
+  annotated_frames_dir: "data/annotated_frames"
+  annotated_video_output: "results/annotated_clip_output.mp4"
+
+# Annotasyon ayarları
+annotation:
+  font_scale: 0.7
+  font_thickness: 2
+  bar_height: 60
+  text_color: [255, 255, 255]      # Beyaz
+  bg_color: [0, 0, 0]              # Siyah
+  confidence_colors:
+    high: [0, 255, 0]              # Yeşil - %60 üzeri
+    medium: [0, 255, 255]          # Sarı - %40-%60
+    low: [0, 0, 255]               # Kırmızı - %40 altı
+
+# Video oluşturma ayarları
+output_video:
+  fps: 2
+  codec: "mp4v"
